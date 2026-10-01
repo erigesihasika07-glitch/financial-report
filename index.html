@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tally: plain-talk money coach</title>
+<meta name="description" content="Tally reads your spending and tells you, in plain words, where your money is going.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hero"><div class="wrap">
+  <header>
+    <span class="logo">Tally</span>
+    <div class="ctl">
+      <label class="sr" for="month">Month</label><select id="month"></select>
+      <label class="sr" for="cur">Currency</label><select id="cur"><option>₹</option><option>$</option><option>€</option><option>£</option></select>
+    </div>
+  </header>
+  <h1 id="headline"></h1>
+  <p id="sub"></p>
+  <dl class="stats">
+    <div><dt>Spent</dt><dd id="sSpent"></dd></div>
+    <div><dt>Last month</dt><dd id="sPrev"></dd></div>
+    <div><dt id="sBudL">Budget left</dt><dd id="sBud"></dd></div>
+  </dl>
+</div></div>
+
+<main class="wrap">
+  <section class="two">
+    <div><h2>Where it went</h2><div id="bars"></div></div>
+    <div><h2>Coach notes</h2><ul id="notes" class="notes"></ul></div>
+  </section>
+
+  <section>
+    <h2>Add an expense</h2>
+    <form id="add" class="fields">
+      <label>Date<input type="date" id="fDate" required></label>
+      <label>What for<input id="fDesc" placeholder="Swiggy dinner" required></label>
+      <label>Amount<input type="number" id="fAmt" min="0.01" step="0.01" placeholder="450" required></label>
+      <label>Category<select id="fCat"></select></label>
+      <button class="btn" type="submit">Add expense</button>
+    </form>
+    <form id="bud" class="fields small">
+      <label>Monthly budget<input type="number" id="fBud" min="0" step="1" placeholder="30000"></label>
+      <button class="btn ghost" type="submit">Save budget</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Transactions</h2>
+    <div class="tools">
+      <label class="btn ghost" for="file" tabindex="0">Import CSV</label>
+      <input type="file" id="file" accept=".csv,text/csv" hidden>
+      <button class="btn ghost" id="demo">Load sample data</button>
+      <button class="btn ghost danger" id="clear">Clear all data</button>
+    </div>
+    <p id="msg" role="status" class="msg"></p>
+    <ul id="tx" class="tx"></ul>
+  </section>
+</main>
+<footer class="wrap">Your data stays in this browser. Nothing is uploaded or sent anywhere.</footer>
+<script src="app.js"></script>
+</body>
+</html>
